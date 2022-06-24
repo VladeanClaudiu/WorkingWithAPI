@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoredBot</title>
-
+    
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -19,11 +19,13 @@
                 <object class="logo-fill" data="./svg/bot.svg" width="200" height="200"></object>
             </div>
        
-            <p class="generated-activity">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam illum magni sit, voluptas magnam similique, officiis ab nisi ratione labore fugit, quas natus expedita! Excepturi molestiae molestias quidem nam error!</p>
+            <p class="generated-activity" id="activity">
+                If you're feeling bored, click the new activity button below.
+            </p>
       
             <!-- div two -->
             <div class="button1">
-                <button>button1</button>
+                <button id="fetchActivity">button1</button>
             </div>
             <div class="button2">
                 <button>button2</button>
@@ -31,4 +33,5 @@
     
     </div>
 </body>
+<script src="index.js"></script>
 </html>
