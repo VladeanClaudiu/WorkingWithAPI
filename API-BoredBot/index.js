@@ -1,4 +1,4 @@
-const urlData = 'https://apis.scrimba.com/bored/api/activity'
+const urlData = 'https://www.boredapi.com/api/activity'
 
 fetch(urlData)
 .then(response => response.json())
