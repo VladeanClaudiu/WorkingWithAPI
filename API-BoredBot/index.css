@@ -59,6 +59,7 @@ button{
     border-radius: 10px;
     height: 60px;
     width: 100%;
+    cursor: pointer;
 }
 
 button:hover{
@@ -66,6 +67,5 @@ button:hover{
     background: white;
     color: #ac29c7;
     border: 3px solid #ac29c7;
-
 }
 
