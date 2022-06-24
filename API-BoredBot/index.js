@@ -1,7 +1,5 @@
-const urlDogAPI = 'https://dog.ceo/api/breeds/image/random'
+const urlData = 'https://apis.scrimba.com/bored/api/activity'
 
-fetch(urlDogAPI)
+fetch(urlData)
 .then(response => response.json())
-.then(data => document.querySelector('.image-div').innerHTML = `
-    <img src='${data.message}' />
-`)
+.then(data => document.getElementById('idea').innerHTML = `${data.activity}`)
