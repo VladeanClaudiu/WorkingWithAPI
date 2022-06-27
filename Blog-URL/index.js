@@ -1,5 +1,24 @@
-const requestPlace = document.getElementById('request-place');
+const baseURL = 'https://apis.scrimba.com/jsonplaceholder/';
+const endPointPost = 'posts'
 
-fetch('https://apis.scrimba.com/jsonplaceholder/posts')
+const blogContainer = document.querySelector('.blog-container');
+
+fetch(baseURL+endPointPost, {method: 'GET'})
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+        const postArr = data.slice(0, 5);
+        console.log( postArr)
+        blogContainer.innerHTML = postArr.map((num) => {
+            return  `
+                        <div class="blog-title">
+                            <h2>${num.title}</h2>
+                        </div>
+                        <div class="blog-body">
+                            <p>${num.body}</p>
+                        </div>  
+                    `
+        })
+        
+                               
+
+    })
