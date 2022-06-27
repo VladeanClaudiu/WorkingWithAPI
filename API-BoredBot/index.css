@@ -69,3 +69,14 @@ button:hover{
     border: 3px solid #ac29c7;
 }
 
+/* makes the button invisible untill the peropety is changed by a function
+.whereActivity{
+    display: none;
+} */
+
+.whereActivity a{
+    font-style: none;
+    text-decoration: none;
+    color: inherit;
+}
+
