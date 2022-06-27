@@ -7,16 +7,29 @@ body{
     font-family: 'Open Sans', sans-serif;
 }
 
+.nav{
+    width: 100%;
+    background-color: #edf6a0;
+    height: 50px;
+    position: fixed;
+    top: 0;
+}
+
+.nav p {
+    color: #4cd162;
+    font-weight: bold;
+    margin-left: 10%;
+}
+
 .blog-container{
-    margin: 5% 10% 0% 10%;   
+    margin: 10% 10% 0% 10%;   
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 1em;
 }
 
 .blog-post{
-    
-    background-color: #eef98c;
+    background-color: #edf6a0;
     padding: 1% 5% 1% 5%;
     border-radius: 10px;
     box-shadow: #4cd190;
