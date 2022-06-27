@@ -9,14 +9,14 @@ body{
 
 .nav{
     width: 100%;
-    background-color: #edf6a0;
+    background-color: #4cd162;
     height: 50px;
     position: fixed;
     top: 0;
 }
 
 .nav p {
-    color: #4cd162;
+    color: #f1f9a9;
     font-weight: bold;
     margin-left: 10%;
 }
