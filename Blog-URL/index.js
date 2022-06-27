@@ -10,15 +10,14 @@ fetch(baseURL+endPointPost, {method: 'GET'})
         console.log( postArr)
         blogContainer.innerHTML = postArr.map((num) => {
             return  `
-                        <div class="blog-title">
-                            <h2>${num.title}</h2>
-                        </div>
-                        <div class="blog-body">
-                            <p>${num.body}</p>
-                        </div>  
+                        <div class="blog-post">
+                            <div class="blog-title">
+                                <h2>${num.title}</h2>
+                            </div>
+                            <div class="blog-body">
+                                <p>${num.body}</p>
+                            </div> 
+                        </div> 
                     `
-        })
-        
-                               
-
+        }).join('');
     })

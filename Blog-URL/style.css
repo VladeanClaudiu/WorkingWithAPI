@@ -1,4 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap');
+
 body{
     margin: 0;
     padding: 0;
+    background-color: #f1f9a9;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.blog-container{
+    margin: 5% 10% 0% 10%;   
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1em;
+}
+
+.blog-post{
+    
+    background-color: #eef98c;
+    padding: 1% 5% 1% 5%;
+    border-radius: 10px;
+    box-shadow: #4cd190;
+}
+
+.blog-title{
+    color: #4cd162;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.blog-body{
+    color: #4cd190;
+    font-size: .9em;
+    font-weight: lighter;
 }
