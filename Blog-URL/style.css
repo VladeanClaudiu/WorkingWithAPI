@@ -23,11 +23,60 @@ body{
 
 .blog-form{
     margin: 10% 10% 0% 10%;
+    background-color: #4cd162;
+    padding: 5%;
+    border-radius: 10px;
 }
 
 .blog-form form{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns:repeat(3, 1fr);
+    color: #edf6a0;
+    font-weight: bold;
+}
+
+form label, input{
+    grid-column: 1/4;
+    margin: 2px;
+}
+
+form input{
+    font-size: 1.2em;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f1f9a9;
+    border: none;
+    border-radius: 10px;
+    color: #4cd162;
+    font-weight: lighter;
+}
+
+form textarea{
+    grid-column: 1/4;
+    height: 6em;
+    font-size: 1.2em;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f1f9a9;
+    border: none;
+    border-radius: 10px;
+    color: #4cd162;
+    font-weight: lighter;
+}
+
+form button{
+    grid-column: 2/3;
+    background-color: #edf6a0;
+    border: none;
+    font-size: 1.4em;
+    margin: 8px;
+    color: #4cd162;
+    border-radius: 5px;
+    height: 2.5em;
+    cursor: pointer;
+}
+
+form button:hover{
+    transition: 100ms ease-in-out;
+    border: 2px solid #4cd162;
 }
 
 .blog-container{
