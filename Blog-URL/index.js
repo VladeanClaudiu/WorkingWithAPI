@@ -28,12 +28,15 @@ fetch(baseURL+endPointPost, {method: 'GET'})
 
 blogForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log("button pressed");
 
+    //from data value variables
     const blogFormTitle = postBlogTitle.value;
     const blogFormBody = postBlogBody.value;
+
+    // object containing the form data
     const postFormData = {title: blogFormTitle, body: blogFormBody}
 
+    //post request variable
     const postOptions = {
         method: 'POST',
         body: JSON.stringify(postFormData),
@@ -42,6 +45,7 @@ blogForm.addEventListener('submit', (event) => {
         }
     }
 
+    //fetch request > response > datalog
     fetch(baseURL+endPointPost, postOptions)
     .then(response => response.json())
     .then(data => console.log(data));
