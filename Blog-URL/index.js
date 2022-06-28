@@ -6,26 +6,29 @@ const blogContainer = document.querySelector('.blog-container');
 const postBlogButton = document.getElementById('post-blog');
 const postBlogTitle = document.getElementById('blog-form-title')
 const postBlogBody = document.getElementById('blog-form-body')
+
 let dataArray = [];
+//html render function to avoid repeating of code
+const renderBlogHtml = () => {
+    blogContainer.innerHTML = dataArray.map((num) => {
+        return  `
+                    <div class="blog-post">
+                        <div class="blog-title">
+                            <h2>${num.title}</h2>
+                        </div>
+                        <div class="blog-body">
+                            <p>${num.body}</p>
+                        </div> 
+                    </div> 
+                `
+    }).join('');
+}
 
 fetch(baseURL+endPointPost, {method: 'GET'})
     .then(response => response.json())
     .then(data => {
-        const postArr = data.slice(0, 5);
-        console.log( postArr)
-        dataArray = postArr;
-        blogContainer.innerHTML = postArr.map((num) => {
-            return  `
-                        <div class="blog-post">
-                            <div class="blog-title">
-                                <h2>${num.title}</h2>
-                            </div>
-                            <div class="blog-body">
-                                <p>${num.body}</p>
-                            </div> 
-                        </div> 
-                    `
-        }).join('');
+        dataArray = data.slice(0, 5);
+        renderBlogHtml();
     })
 
 blogForm.addEventListener('submit', (event) => {
@@ -51,20 +54,8 @@ blogForm.addEventListener('submit', (event) => {
     fetch(baseURL+endPointPost, postOptions)
     .then(response => response.json())
     .then(data => {
-        const newPostArray = data;
         dataArray.unshift(data);
-        blogContainer.innerHTML = dataArray.map((num) => {
-            return  `
-                        <div class="blog-post">
-                            <div class="blog-title">
-                                <h2>${num.title}</h2>
-                            </div>
-                            <div class="blog-body">
-                                <p>${num.body}</p>
-                            </div> 
-                        </div> 
-                    `
-        }).join('');
+        renderBlogHtml();
     });
     
 })
