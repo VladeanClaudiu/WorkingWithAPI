@@ -1,7 +1,11 @@
 const baseURL = 'https://apis.scrimba.com/jsonplaceholder/';
 const endPointPost = 'posts'
 
+const blogForm = document.getElementById('blog-form')
 const blogContainer = document.querySelector('.blog-container');
+const postBlogButton = document.getElementById('post-blog');
+const postblogTitle = document.getElementById('blog-form-title')
+const postblogBody = document.getElementById('blog-form-body')
 
 fetch(baseURL+endPointPost, {method: 'GET'})
     .then(response => response.json())
@@ -21,3 +25,19 @@ fetch(baseURL+endPointPost, {method: 'GET'})
                     `
         }).join('');
     })
+
+blogForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log("button pressed");
+
+    const formData = new FormData(event.target);
+    blogFormObject = {};
+
+    for(const [fieldName] of formData) {
+        const fieldValue = formData.getAll(fieldName);
+        blogFormObject[fieldName] = fieldValue.length == 1 ? fieldValue.toString() : fieldValue
+    }
+
+    console.log('blogForm', blogFormObject)
+    
+})
