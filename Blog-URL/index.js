@@ -32,10 +32,18 @@ blogForm.addEventListener('submit', (event) => {
 
     const blogFormTitle = postBlogTitle.value;
     const blogFormBody = postBlogBody.value;
-
     const postFormData = {title: blogFormTitle, body: blogFormBody}
-    console.log(postFormData)
 
-   
+    const postOptions = {
+        method: 'POST',
+        body: JSON.stringify(postFormData),
+        headers: {
+            "Content-Type": 'application/json'
+        }
+    }
+
+    fetch(baseURL+endPointPost, postOptions)
+    .then(response => response.json())
+    .then(data => console.log(data));
     
 })
