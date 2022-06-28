@@ -56,6 +56,8 @@ blogForm.addEventListener('submit', (event) => {
     .then(data => {
         dataArray.unshift(data);
         renderBlogHtml();
+        //resetting form
+        blogForm.reset()
     });
     
 })
