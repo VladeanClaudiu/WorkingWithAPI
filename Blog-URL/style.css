@@ -21,6 +21,15 @@ body{
     margin-left: 10%;
 }
 
+.blog-form{
+    margin: 10% 10% 0% 10%;
+}
+
+.blog-form form{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 .blog-container{
     margin: 10% 10% 0% 10%;   
     display: grid;
