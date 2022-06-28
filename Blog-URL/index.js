@@ -6,12 +6,14 @@ const blogContainer = document.querySelector('.blog-container');
 const postBlogButton = document.getElementById('post-blog');
 const postBlogTitle = document.getElementById('blog-form-title')
 const postBlogBody = document.getElementById('blog-form-body')
+let dataArray = [];
 
 fetch(baseURL+endPointPost, {method: 'GET'})
     .then(response => response.json())
     .then(data => {
         const postArr = data.slice(0, 5);
         console.log( postArr)
+        dataArray = postArr;
         blogContainer.innerHTML = postArr.map((num) => {
             return  `
                         <div class="blog-post">
@@ -48,6 +50,21 @@ blogForm.addEventListener('submit', (event) => {
     //fetch request > response > datalog
     fetch(baseURL+endPointPost, postOptions)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => {
+        const newPostArray = data;
+        dataArray.unshift(data);
+        blogContainer.innerHTML = dataArray.map((num) => {
+            return  `
+                        <div class="blog-post">
+                            <div class="blog-title">
+                                <h2>${num.title}</h2>
+                            </div>
+                            <div class="blog-body">
+                                <p>${num.body}</p>
+                            </div> 
+                        </div> 
+                    `
+        }).join('');
+    });
     
 })
