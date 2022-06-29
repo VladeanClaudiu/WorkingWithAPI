@@ -2,7 +2,8 @@
 const apiUrlHead = 'https://www.thecolorapi.com'
 const colorHead = document.getElementById('appHead');
 const colorBody = document.getElementById('appBody');
-const colorFooter = document.getElementById('appFooter')
+const colorFooter = document.getElementById('appFooter');
+const colorPicker = document.getElementById('color-picker')
 
 //fetch to the api
 // fetch('https://www.thecolorapi.com/id?rgb=rgb(0,71,171)')
@@ -13,8 +14,8 @@ const colorFooter = document.getElementById('appFooter')
 
 const renderApp = () => {
     //rendering headder of app
-    colorHead.innerHTML = `
-                            <input type="color" name="color-picker" id="color-picker">
+    colorHead.innerHTML += `
+                            
                             <select name="schemes" id="schemes">
                                 <option value="test">test</option>
                                 <option value="test">test</option>
@@ -48,7 +49,12 @@ const renderApp = () => {
                                 <p>#ffffff</p>
                             </div>
                              `
+                            
 }
 
+
+
 renderApp();
+
+console.log(colorPicker.value)
 
