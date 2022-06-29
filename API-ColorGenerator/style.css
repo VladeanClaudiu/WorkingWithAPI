@@ -2,3 +2,50 @@ body{
     margin: 0;
     padding: 0;
 }
+
+.app-container{
+    display: grid;
+    grid-template-rows: 2fr 5fr 1fr;
+    height: 100%;
+}
+
+.app-head{
+    background-color: red;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    column-gap: 1em;
+    padding: 2em;
+    margin: 0;
+}
+
+.app-body{
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.color-1{    
+    background-color: blue;
+}
+
+.color-2{ 
+    background-color: green;
+}
+
+.color-3{
+    background-color: yellow;
+}
+
+.color-4{   
+    background-color: pink;
+}
+
+.color-5{
+    background-color: white;
+}
+
+.app-footer{
+    background-color: red;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
