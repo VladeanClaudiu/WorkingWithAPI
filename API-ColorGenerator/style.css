@@ -36,6 +36,7 @@ body{
     background: none;
     border-radius: 5px;
     border: 2px solid #D1D5DB;
+    cursor: pointer;
 }
 
 .app-body{
