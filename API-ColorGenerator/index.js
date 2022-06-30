@@ -7,53 +7,39 @@ const colorPicker = document.getElementById('color-picker')
 const sumbitBtn = document.getElementById('sumbit-scheme')
 
 
-//fetch to the api
-// fetch('https://www.thecolorapi.com/id?rgb=rgb(0,71,171)')
-//     .then(resp => resp.json())
-//     .then(data => console.log(data))
 
-//app render function
 
-const renderApp = () => {
-    //rendering headder of app
-    colorBody.innerHTML = `
-                            <div class="color-1"></div>
-                            <div class="color-2"></div>
-                            <div class="color-3"></div>
-                            <div class="color-4"></div>
-                            <div class="color-5"></div>
-                            `
-    colorFooter.innerHTML = `
-                            <div class="color-1-hex">
-                                <p>#ffffff</p>
-                            </div>
-                            <div class="color-2-hex">
-                                <p>#ffffff</p>
-                            </div>
-                            <div class="color-3-hex">
-                                <p>#ffffff</p>
-                            </div>
-                            <div class="color-4-hex">
-                                <p>#ffffff</p>
-                            </div>
-                            <div class="color-5-hex">
-                                <p>#ffffff</p>
-                            </div>
-                             `
-                            
+const renderHtml = (hexValue) => {
+    colorFooter.innerHTML += `
+    <div class="color-hex">
+        <p>${hexValue}</p>
+    </div>
+    `
+    colorBody.innerHTML +=`
+    <div style='background-color: ${hexValue}'"></div>  
+    `
+
 }
 
-
 sumbitBtn.addEventListener('click', () => {
+    //reset the html for the color Footer
+    colorFooter.innerHTML = ''
+    colorBody.innerHTML = ''
     const regEx = /\w+/g
     let colorScheme = schemesOptions.value;
     let colorPickerHex = regEx.exec(colorPicker.value);
     console.log(colorPickerHex)
+
     fetch(`https://www.thecolorapi.com/scheme?hex=${colorPickerHex}&mode=${colorScheme}&count=5`)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+        let dataArrayColors = data.colors;
+        for(let i = 0; i < dataArrayColors.length; i++){
+            renderHtml(dataArrayColors[i].hex.value, i+1)
+        }
+    })
 })
 
-renderApp();
+
 
 
