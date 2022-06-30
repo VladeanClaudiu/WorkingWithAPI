@@ -31,7 +31,7 @@ const renderHtml = (hexValue) => {
     </div>
     `
     colorBody.innerHTML +=`
-    <div style='background-color: ${hexValue}'"></div>  
+    <div style='background-color: ${hexValue}'></div>  
     `
 
 }
