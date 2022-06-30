@@ -7,24 +7,7 @@ const colorPicker = document.getElementById('color-picker')
 const sumbitBtn = document.getElementById('sumbit-scheme')
 
 
-
-
-const renderHtml = (hexValue) => {
-    colorFooter.innerHTML += `
-    <div class="color-hex">
-        <p>${hexValue}</p>
-    </div>
-    `
-    colorBody.innerHTML +=`
-    <div style='background-color: ${hexValue}'"></div>  
-    `
-
-}
-
-sumbitBtn.addEventListener('click', () => {
-    //reset the html for the color Footer
-    colorFooter.innerHTML = ''
-    colorBody.innerHTML = ''
+const fetchFunction = () => {
     const regEx = /\w+/g
     let colorScheme = schemesOptions.value;
     let colorPickerHex = regEx.exec(colorPicker.value);
@@ -38,7 +21,42 @@ sumbitBtn.addEventListener('click', () => {
             renderHtml(dataArrayColors[i].hex.value, i+1)
         }
     })
+}
+
+
+const renderHtml = (hexValue) => {
+    colorFooter.innerHTML += `
+    <div class="color-hex">
+        <p onclick='getHexCode("${hexValue}")'>${hexValue}</p>
+    </div>
+    `
+    colorBody.innerHTML +=`
+    <div style='background-color: ${hexValue}'"></div>  
+    `
+
+}
+
+sumbitBtn.addEventListener('click', () => {
+    //reset the html for the color Footer
+    colorFooter.innerHTML = ''
+    colorBody.innerHTML = ''
+   fetchFunction();
 })
+
+//copy hexcode to clipboard
+function getHexCode(valueHex) {
+    const body = document.querySelector('body');
+    let hex = valueHex;
+    let hexCopy = document.createElement('textarea');
+    body.appendChild(hexCopy)
+    hexCopy.value = hex;
+    hexCopy.select();
+    document.execCommand('copy');
+    alert('Hex copied:  ' + hex)
+    body.removeChild(hexCopy);
+}
+
+fetchFunction();
 
 
 

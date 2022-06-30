@@ -73,3 +73,10 @@ body{
     font-weight: normal;
     font-variant: small-caps;
 }
+
+.color-hex{
+    text-align: center;
+    font-weight: normal;
+    font-variant: small-caps;
+    cursor: pointer;
+}
