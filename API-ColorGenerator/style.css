@@ -30,6 +30,9 @@ body{
 .app-head select{
     border-radius: 10px;
     border: 2px solid #D1D5DB;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: lighter;
 }
 
 .app-head button{
@@ -77,6 +80,12 @@ body{
 .color-hex{
     text-align: center;
     font-weight: normal;
-    font-variant: small-caps;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.color-hex:hover{
+    text-align: center;
+    font-weight: normal;
     cursor: pointer;
 }
