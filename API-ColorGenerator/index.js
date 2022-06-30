@@ -45,8 +45,13 @@ const renderApp = () => {
 
 
 sumbitBtn.addEventListener('click', () => {
-    console.log(schemesOptions.value)
-    console.log(colorPicker.value)
+    const regEx = /\w+/g
+    let colorScheme = schemesOptions.value;
+    let colorPickerHex = regEx.exec(colorPicker.value);
+    console.log(colorPickerHex)
+    fetch(`https://www.thecolorapi.com/scheme?hex=${colorPickerHex}&mode=${colorScheme}&count=5`)
+    .then(res => res.json())
+    .then(data => console.log(data))
 })
 
 renderApp();
