@@ -4,6 +4,8 @@ const schemesOptions = document.getElementById('schemes');
 const colorBody = document.getElementById('appBody');
 const colorFooter = document.getElementById('appFooter');
 const colorPicker = document.getElementById('color-picker')
+const sumbitBtn = document.getElementById('sumbit-scheme')
+
 
 //fetch to the api
 // fetch('https://www.thecolorapi.com/id?rgb=rgb(0,71,171)')
@@ -42,8 +44,11 @@ const renderApp = () => {
 }
 
 
+sumbitBtn.addEventListener('click', () => {
+    console.log(schemesOptions.value)
+    console.log(colorPicker.value)
+})
 
 renderApp();
 
-console.log(colorPicker.value)
 
