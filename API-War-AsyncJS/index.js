@@ -19,7 +19,7 @@ const drawCards = () => {
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.cards);
+      console.log(data);
       data.cards.map((card) => {
         cardImageDiv.innerHTML += `<img src="${
           card.image
