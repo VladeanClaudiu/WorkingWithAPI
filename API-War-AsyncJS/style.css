@@ -13,11 +13,45 @@ body{
 
 .card-container{
     grid-column: 1/4;
-    margin: 2% 10% 10% 10%;
+    margin: 10% 10% 10% 5%;
     height: 50vh;
 }
 
 .cardImg{
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.drawCardBtn{
+    grid-column: 1/4;
+    background: none;
+    font-size: 2em;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.drawCardBtn:hover{
+    opacity: .8;
+}
+
+.newDeckBtn{
+    background: none;
+    font-size: 1.5em;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.newDeckBtn:hover{
+    opacity: .8;
+}
+
+img{
+    border: 3px solid white;
+    border-radius: 11px;
+    height: 50vh;
+    margin: 0 auto 0 auto;
 }
