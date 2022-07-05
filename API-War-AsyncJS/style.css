@@ -1,4 +1,23 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: cadetblue;
+}
+
+.container{
+    margin: 5% 10% 5% 10%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 8fr 1fr;
+}
+
+.card-container{
+    grid-column: 1/4;
+    margin: 2% 10% 10% 10%;
+    height: 50vh;
+}
+
+.cardImg{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
