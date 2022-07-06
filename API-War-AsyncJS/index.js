@@ -4,11 +4,11 @@ const cardImageDiv = document.getElementById("card-img");
 let deckId = null;
 let playerScord = 0;
 let computerScore = 0;
-const cardValueArr = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
 
 const  decideWinner = (plCard, compCard) => {
-  let player = cardValueArr.indexOf(plCard);
-  let comp = cardValueArr.indexOf(compCard)
+  const cardValueArr = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
+  let player = cardValueArr.indexOf(plCard.value);
+  let comp = cardValueArr.indexOf(compCard.value)
   if(player === comp){
     console.log("Its a tie")
   }else if(player > comp){
@@ -47,7 +47,7 @@ const drawCards = () => {
           card.image
         }" alt="a image of a playing card the ${card.value + ' of ' + card.suit}">`;
       });
-      decideWinner(data.cards[0].value, data.cards[1].value);
+      decideWinner(data.cards[0], data.cards[1]);
     });
 };
 
