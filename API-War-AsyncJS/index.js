@@ -1,6 +1,7 @@
 const generateDeckBtn = document.getElementById("generate-deck");
 const drawCardsBtn = document.getElementById("draw-cards");
 const cardImageDiv = document.getElementById("card-img");
+const winingCardHead = document.getElementById('winning-card')
 let deckId = null;
 let playerScord = 0;
 let computerScore = 0;
@@ -10,17 +11,18 @@ const  decideWinner = (plCard, compCard) => {
   let player = cardValueArr.indexOf(plCard.value);
   let comp = cardValueArr.indexOf(compCard.value)
   if(player === comp){
-    console.log("Its a tie")
+    return 'War!'
   }else if(player > comp){
-    console.log("Player is the winner");
     playerScord++;
-
+    return 'You win!'
   }else{
-    console.log("Computer is the winner")
     computerScore++;
+    return 'Computer is the winner!'
   }
-  console.log(`The score of the Comuter is: ${computerScore}
-               The score of the Plyaer is: ${playerScord}`)
+  
+  // testing if score count works
+  // console.log(`The score of the Comuter is: ${computerScore}
+  //              The score of the Plyaer is: ${playerScord}`)
 }
 
 const fetchCards = () => {
@@ -29,6 +31,7 @@ const fetchCards = () => {
     .then((data) => {
       console.log(data);
       deckId = data.deck_id;
+      winingCardHead.textContent = 'Draw Cards';
     });
 };
 
@@ -45,7 +48,7 @@ const drawCards = () => {
           card.image
         }" alt="a image of a playing card the ${card.value + ' of ' + card.suit}">`;
       });
-      decideWinner(data.cards[0], data.cards[1]);
+      winingCardHead.textContent = decideWinner(data.cards[0], data.cards[1]);
     });
 };
 
