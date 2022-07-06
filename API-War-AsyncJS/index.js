@@ -2,6 +2,12 @@ const generateDeckBtn = document.getElementById("generate-deck");
 const drawCardsBtn = document.getElementById("draw-cards");
 const cardImageDiv = document.getElementById("card-img");
 let deckId = null;
+let playerCard;
+let aiCard;
+
+const  decideWinner = (playerCard, aiCard) => {
+  
+}
 
 const fetchCards = () => {
   fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
