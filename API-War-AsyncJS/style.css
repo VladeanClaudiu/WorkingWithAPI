@@ -64,3 +64,9 @@ img{
     width: 200px;
     margin: 0 auto 0 auto;
 }
+
+.winningCard{
+    text-align: center;
+    color: white;
+
+}

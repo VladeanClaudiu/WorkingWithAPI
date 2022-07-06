@@ -23,8 +23,6 @@ const  decideWinner = (plCard, compCard) => {
                The score of the Plyaer is: ${playerScord}`)
 }
 
-
-
 const fetchCards = () => {
   fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
     .then((res) => res.json())
