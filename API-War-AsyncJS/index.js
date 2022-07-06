@@ -2,12 +2,28 @@ const generateDeckBtn = document.getElementById("generate-deck");
 const drawCardsBtn = document.getElementById("draw-cards");
 const cardImageDiv = document.getElementById("card-img");
 let deckId = null;
-let playerCard;
-let aiCard;
+let playerScord = 0;
+let computerScore = 0;
+const cardValueArr = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING", "ACE"]
 
-const  decideWinner = (playerCard, aiCard) => {
-  
+const  decideWinner = (plCard, compCard) => {
+  let player = cardValueArr.indexOf(plCard);
+  let comp = cardValueArr.indexOf(compCard)
+  if(player === comp){
+    console.log("Its a tie")
+  }else if(player > comp){
+    console.log("Player is the winner");
+    playerScord++;
+
+  }else{
+    console.log("Computer is the winner")
+    computerScore++;
+  }
+  console.log(`The score of the Comuter is: ${computerScore}
+               The score of the Plyaer is: ${playerScord}`)
 }
+
+
 
 const fetchCards = () => {
   fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
@@ -29,8 +45,9 @@ const drawCards = () => {
       data.cards.map((card) => {
         cardImageDiv.innerHTML += `<img src="${
           card.image
-        }" alt="a image of a playing card the ${card.value + card.suit}">`;
+        }" alt="a image of a playing card the ${card.value + ' of ' + card.suit}">`;
       });
+      decideWinner(data.cards[0].value, data.cards[1].value);
     });
 };
 
