@@ -3,10 +3,13 @@ const drawCardsBtn = document.getElementById("draw-cards");
 const cardImageDiv = document.getElementById("card-img");
 const winingCardHead = document.getElementById("winning-card");
 const cardsRemaining = document.getElementById("cards-remaining");
+const yourScore = document.getElementById("your-score");
+const computerScore = document.getElementById("computer-score");
 
 let deckId = null;
-let playerScord = 0;
-let computerScore = 0;
+let plScore = 0;
+let compScore = 0;
+let cardsLeft = true;
 
 const decideWinner = (plCard, compCard) => {
   const cardValueArr = [
@@ -29,10 +32,10 @@ const decideWinner = (plCard, compCard) => {
   if (player === comp) {
     return "War!";
   } else if (player > comp) {
-    playerScord++;
+    plScore++;
     return "You win!";
   } else {
-    computerScore++;
+    compScore++;
     return "Computer is the winner!";
   }
 
@@ -68,6 +71,11 @@ const drawCards = () => {
         }">`;
       });
       winingCardHead.textContent = decideWinner(data.cards[0], data.cards[1]);
+      yourScore.innerHTML = `<h4>You: ${plScore}</h4>`;
+      computerScore.innerHTML = `<h4>Computer: ${compScore}</h4>`;
+      if (data.remaining === 0) {
+        cardsLeft = false;
+      }
       cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
     });
 };
@@ -76,6 +84,15 @@ const drawCards = () => {
 generateDeckBtn.addEventListener("click", fetchCards);
 
 //draws cards from generated deck > does not allow draw is the deck is not generated yet
-drawCardsBtn.addEventListener("click", () =>
-  deckId === null ? alert("drawCards") : drawCards()
-);
+drawCardsBtn.addEventListener("click", () => {
+  if (cardsLeft === true) {
+    deckId === null ? alert("drawCards") : drawCards();
+  } else {
+    drawCardsBtn.disabled = true;
+    if (plScore > compScore) {
+      winingCardHead.textContent = "You Win the War!!!";
+    } else {
+      winingCardHead.textContent = "Computer Wins the War!!!";
+    }
+  }
+});
