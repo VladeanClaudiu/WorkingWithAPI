@@ -45,6 +45,10 @@ const decideWinner = (plCard, compCard) => {
 };
 
 const fetchCards = () => {
+  plScore = 0;
+  compScore = 0;
+  cardImageDiv.innerHTML = `<div class="image-placeholder"></div>
+                            <div class="image-placeholder"></div>`;
   fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
     .then((res) => res.json())
     .then((data) => {
@@ -56,12 +60,15 @@ const fetchCards = () => {
 };
 
 const drawCards = () => {
-  cardImageDiv.innerHTML = "";
+  cardImageDiv.innerHTML = ``;
   fetch(
     `https://apis.scrimba.com/deckofcards/api/deck//${deckId}/draw/?count=2`
   )
     .then((res) => res.json())
     .then((data) => {
+      if (data.remaining === 0) {
+        cardsLeft = false;
+      }
       console.log(data);
       data.cards.map((card) => {
         cardImageDiv.innerHTML += `<img src="${
@@ -73,9 +80,6 @@ const drawCards = () => {
       winingCardHead.textContent = decideWinner(data.cards[0], data.cards[1]);
       yourScore.innerHTML = `<h4>You: ${plScore}</h4>`;
       computerScore.innerHTML = `<h4>Computer: ${compScore}</h4>`;
-      if (data.remaining === 0) {
-        cardsLeft = false;
-      }
       cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
     });
 };
