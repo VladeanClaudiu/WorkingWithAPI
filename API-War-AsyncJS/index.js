@@ -45,6 +45,8 @@ const decideWinner = (plCard, compCard) => {
 };
 
 const fetchCards = () => {
+  drawCardsBtn.disabled = false;
+  cardsLeft = true;
   plScore = 0;
   compScore = 0;
   cardImageDiv.innerHTML = `<div class="image-placeholder"></div>
