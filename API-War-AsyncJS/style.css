@@ -19,6 +19,7 @@ body{
     height: 50vh;
 }
 
+
 .cardImg{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -71,4 +72,11 @@ img{
     text-align: center;
     color: white;
 
+}
+
+.cardsRemaining{
+    color: white;
+    margin-left: 1em;
+    font-weight: lighter;
+    grid-column: 2/4;
 }
