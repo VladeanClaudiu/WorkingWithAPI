@@ -48,6 +48,7 @@ const fetchCards = () => {
       console.log(data);
       deckId = data.deck_id;
       winingCardHead.textContent = "Draw Cards";
+      cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
     });
 };
 
