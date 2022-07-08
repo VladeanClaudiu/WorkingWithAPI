@@ -40,6 +40,7 @@ const decideWinner = (plCard, compCard) => {
   }
 };
 
+//fetches newe deck
 const fetchCards = async () => {
   drawCardsBtn.disabled = false;
   cardsLeft = true;
@@ -58,25 +59,34 @@ const fetchCards = async () => {
   cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
 };
 
+//draws two cards from the deck fetched by the fetchCards func
 const drawCards = async () => {
   cardImageDiv.innerHTML = ``;
   const res = await fetch(
     `https://apis.scrimba.com/deckofcards/api/deck//${deckId}/draw/?count=2`
   );
   const data = await res.json();
-  if (data.remaining === 0) {
-    cardsLeft = false;
-  }
   console.log(data);
   data.cards.map((card) => {
     cardImageDiv.innerHTML += `<img src="${
       card.image
     }" alt="a image of a playing card the ${card.value + " of " + card.suit}">`;
   });
+
   winingCardHead.textContent = decideWinner(data.cards[0], data.cards[1]);
   yourScore.innerHTML = `<h4>You: ${plScore}</h4>`;
   computerScore.innerHTML = `<h4>Computer: ${compScore}</h4>`;
   cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
+  if (data.remaining === 0) {
+    drawCardsBtn.disabled = true;
+    if (plScore > compScore) {
+      winingCardHead.textContent = "You Win the War!!!";
+    } else if (plScore < compScore) {
+      winingCardHead.textContent = "Computer Wins the War!!!";
+    } else {
+      winingCardHead.textContent = "It's a Tie!!!";
+    }
+  }
 };
 
 //generates new deck
@@ -84,14 +94,5 @@ generateDeckBtn.addEventListener("click", fetchCards);
 
 //draws cards from generated deck > does not allow draw is the deck is not generated yet
 drawCardsBtn.addEventListener("click", () => {
-  if (cardsLeft === true) {
-    deckId === null ? alert("drawCards") : drawCards();
-  } else {
-    drawCardsBtn.disabled = true;
-    if (plScore > compScore) {
-      winingCardHead.textContent = "You Win the War!!!";
-    } else {
-      winingCardHead.textContent = "Computer Wins the War!!!";
-    }
-  }
+  deckId === null ? alert("drawCards") : drawCards();
 });
