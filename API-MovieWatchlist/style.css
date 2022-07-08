@@ -13,7 +13,7 @@ body{
 }
 
 .head{
-    background: rgba(0, 0, 0, 0.546);
+    background: rgba(0, 0, 0, 0.76);
     height: 33vh;
     padding: 0% 8% 0% 8%;
 }
@@ -30,7 +30,7 @@ body{
    font-size: 42px;
    vertical-align: middle;
    letter-spacing: .05em;
-   opacity: .8;
+   opacity: .9;
 }
 
 .headCover button{
@@ -43,13 +43,13 @@ body{
     font-size: 17px;
     width: fit-content;
     margin: auto;
-    opacity: .8;
+    opacity: .9;
 }
 
 .search{
     display: grid;
     grid-template-columns: 3fr 1fr;
-    margin: -2% 8% 0% 8%;
+    margin: -2.2vh 8% 0% 8%;
     height: 40px;
     border: 1px solid #D1D5DB;
     border-radius: 6px;
@@ -92,6 +92,7 @@ body{
     font-size: 14px;
     line-height: 20px;
     color: #374151;
+    cursor: pointer;
 }
 
 
