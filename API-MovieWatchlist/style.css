@@ -95,4 +95,28 @@ body{
     cursor: pointer;
 }
 
+.main{
+    padding: 0% 8% 0% 8%;
+}
+
+.main .main-content{
+    text-align: center;
+    margin-top: 20vh;
+}
+
+object{
+    width: 100px;
+    height: 100px;
+}
+
+.main .main-content h3{
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #DFDDDD;
+}
+
 
