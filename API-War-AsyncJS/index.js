@@ -38,52 +38,45 @@ const decideWinner = (plCard, compCard) => {
     compScore++;
     return "Computer is the winner!";
   }
-
-  // testing if score count works
-  // console.log(`The score of the Comuter is: ${computerScore}
-  //              The score of the Plyaer is: ${playerScord}`)
 };
 
-const fetchCards = () => {
+const fetchCards = async () => {
   drawCardsBtn.disabled = false;
   cardsLeft = true;
   plScore = 0;
   compScore = 0;
   cardImageDiv.innerHTML = `<div class="image-placeholder"></div>
                             <div class="image-placeholder"></div>`;
-  fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      deckId = data.deck_id;
-      winingCardHead.textContent = "Draw Cards";
-      cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
-    });
+
+  const res = await fetch(
+    "https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/"
+  );
+  const data = await res.json();
+  console.log(data);
+  deckId = data.deck_id;
+  winingCardHead.textContent = "Draw Cards";
+  cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
 };
 
-const drawCards = () => {
+const drawCards = async () => {
   cardImageDiv.innerHTML = ``;
-  fetch(
+  const res = await fetch(
     `https://apis.scrimba.com/deckofcards/api/deck//${deckId}/draw/?count=2`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.remaining === 0) {
-        cardsLeft = false;
-      }
-      console.log(data);
-      data.cards.map((card) => {
-        cardImageDiv.innerHTML += `<img src="${
-          card.image
-        }" alt="a image of a playing card the ${
-          card.value + " of " + card.suit
-        }">`;
-      });
-      winingCardHead.textContent = decideWinner(data.cards[0], data.cards[1]);
-      yourScore.innerHTML = `<h4>You: ${plScore}</h4>`;
-      computerScore.innerHTML = `<h4>Computer: ${compScore}</h4>`;
-      cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
-    });
+  );
+  const data = await res.json();
+  if (data.remaining === 0) {
+    cardsLeft = false;
+  }
+  console.log(data);
+  data.cards.map((card) => {
+    cardImageDiv.innerHTML += `<img src="${
+      card.image
+    }" alt="a image of a playing card the ${card.value + " of " + card.suit}">`;
+  });
+  winingCardHead.textContent = decideWinner(data.cards[0], data.cards[1]);
+  yourScore.innerHTML = `<h4>You: ${plScore}</h4>`;
+  computerScore.innerHTML = `<h4>Computer: ${compScore}</h4>`;
+  cardsRemaining.textContent = `Cards Remaining in the deck: ${data.remaining}`;
 };
 
 //generates new deck
