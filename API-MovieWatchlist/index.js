@@ -35,7 +35,11 @@ const getPoster = async (value) => {
     `http://www.omdbapi.com/?s=${value}&apikey=${apiKey}`
   );
   const data = await res.json();
-  console.log(data);
+  const movies = data.map((dataId) => {
+    fetch(`http://www.omdbapi.com/?i=${dataId.imdbID}&apikey=${apiKey}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  });
 };
 
 searchBtn.addEventListener("click", () => {
