@@ -125,23 +125,86 @@ object{
 
 .movieEl{
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: .5fr 3fr;
     border-bottom: 2px solid #E5E7EB;
+    column-gap: 23px;
+    padding: 30px;
 }
+
+
 
 .movieEl .moviePoster{
     grid-column: 1/2;
     grid-row: 1/3;
-    height: 38vh;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 .movieEl .movieTitle, .movieInfo{
     grid-column: 2/3;
 }
 
+.movieTitle{
+    display: flex;
+    text-align: left;
+    height: 50px;
+}
+
+.movieTitle h4{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.movieTitle p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #111827;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
 .movieInfo{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+.movieInfo h5{
+    margin: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    
+    color: #111827;
+}
+
+.movieInfo .watchLater{
+    border: none;
+    background: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    color: #111827;
+    background-image: url(./images/plus-icon.svg);
+    background-repeat: no-repeat;
+    background-position: 0%;
+    padding-left: 20px;
+    cursor: pointer;
+    text-align: left;
+    height: 20px;
+}
+
+.runtime, .genre{
+    top: 50%;
 }
 
 .synopsisParagraph{
