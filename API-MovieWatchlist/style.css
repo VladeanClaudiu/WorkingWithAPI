@@ -99,9 +99,13 @@ body{
     padding: 0% 8% 0% 8%;
 }
 
-.main .main-content{
-    text-align: center;
+.tempMain{
     margin-top: 24vh;
+    text-align: center;
+}
+
+.main-content{
+    margin-top: 10vh;
 }
 
 object{
@@ -117,6 +121,32 @@ object{
     font-size: 20px;
     line-height: 20px;
     color: #DFDDDD;
+}
+
+.movieEl{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.movieEl .moviePoster{
+    grid-column: 1/2;
+    grid-row: 1/3;
+    height: 38vh;
+}
+
+.movieEl .movieTitle, .movieInfo{
+    grid-column: 2/3;
+}
+
+.movieInfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.synopsisParagraph{
+    grid-column: 1/4;
+    text-align: left;
 }
 
 
