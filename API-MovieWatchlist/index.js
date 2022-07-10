@@ -4,7 +4,7 @@ let searchTerm = "Movie Name";
 //html id declarations
 const searchMovieInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-movie");
-let mainHtml = document.getElementById("main-content");
+const mainHtml = document.getElementById("main-content");
 
 function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
   return `
