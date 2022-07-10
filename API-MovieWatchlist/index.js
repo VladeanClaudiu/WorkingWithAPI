@@ -4,31 +4,31 @@ let searchTerm = "Movie Name";
 //html id declarations
 const searchMovieInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-movie");
-const mainHtml = document.getElementById("main-content");
+let mainHtml = document.getElementById("main-content");
 
-let movieEl = `
-            <div class="movieEl">
-                <img
-                class="moviePoster"
-                src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
-                alt="image of something"
-                />
-                <div class="movieTitle">
-                    <h4>Guardians of the Galaxy</h4>
-                    <p>🍅81%</p>
-                </div>
-                <div class="movieInfo">
-                    <h5 class="runtime">120 min</h5>
-                    <h5 class="genre">Action, Drama, Sci-Fi</h5>
-                    <button class="watchLater">Watchlist</button>
-                    <p class="synopsisParagraph">
-                        The Guardians struggle to keep together as a team while dealing
-                        with their personal family issues, notably Star-Lord's encounter
-                        with his father the ambitious celestial being Ego.
-                    </p>
-                </div>
-            </div>
+function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
+  return `
+  <div class="movieEl" id="${id}">
+      <img
+      class="moviePoster"
+      src="${poster}"
+      alt="image of a poster"
+      />
+      <div class="movieTitle">
+          <h4>${title}</h4>
+          <p>⭐${rating}</p>
+      </div>
+      <div class="movieInfo">
+          <h5 class="runtime">${runtime}</h5>
+          <h5 class="genre">${genre}</h5>
+          <button class="watchLater">Watchlist</button>
+          <p class="synopsisParagraph">
+              ${synopsis}
+          </p>
+      </div>
+  </div>
 `;
+}
 
 const getPoster = async (value) => {
   const res = await fetch(
@@ -50,6 +50,19 @@ const getPoster = async (value) => {
 
 searchBtn.addEventListener("click", async () => {
   searchTerm = searchMovieInput.value;
+  mainHtml.innerHTML = "";
   let returnData = await getPoster(searchTerm);
-  returnData.map(async (item) => console.log(await item));
+  returnData.map(async (item) => {
+    const itemValue = await item;
+    console.log(itemValue);
+    mainHtml.innerHTML += await setMovieHtml(
+      await itemValue.imdbID,
+      await itemValue.Poster,
+      await itemValue.Title,
+      await itemValue.Ratings[0].Value,
+      await itemValue.Runtime,
+      await itemValue.Genre,
+      await itemValue.Plot
+    );
+  });
 });
