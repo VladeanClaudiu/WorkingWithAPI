@@ -1,6 +1,5 @@
 const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
-let movieNotFound = false;
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
