@@ -1,5 +1,6 @@
 const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
+let movieNotFound = false;
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
@@ -36,33 +37,47 @@ const getPoster = async (value) => {
   );
   const data = await res.json();
   let dataArray = data.Search;
-  console.log(dataArray);
-  const movieID = dataArray.map(async (movie) => {
-    const res = await fetch(
-      `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`
-    );
-    const data = res.json();
-    return data;
-  });
-  console.log(movieID);
-  return movieID;
+  if (dataArray != undefined) {
+    console.log(dataArray);
+    const movieID = dataArray.map(async (movie) => {
+      const res = await fetch(
+        `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`
+      );
+      const data = res.json();
+      return data;
+    });
+    console.log(movieID);
+    return movieID;
+  }
 };
 
 searchBtn.addEventListener("click", async () => {
   searchTerm = searchMovieInput.value;
   mainHtml.innerHTML = "";
   let returnData = await getPoster(searchTerm);
-  returnData.map(async (item) => {
-    const itemValue = await item;
-    console.log(itemValue);
-    mainHtml.innerHTML += setMovieHtml(
-      itemValue.imdbID,
-      itemValue.Poster,
-      itemValue.Title,
-      itemValue.Ratings[0].Value,
-      itemValue.Runtime,
-      itemValue.Genre,
-      itemValue.Plot
-    );
-  });
+  console.log(returnData);
+  if (returnData != undefined) {
+    returnData.map(async (item) => {
+      const itemValue = await item;
+      console.log(itemValue);
+
+      mainHtml.innerHTML += setMovieHtml(
+        itemValue.imdbID,
+        itemValue.Poster,
+        itemValue.Title,
+        itemValue.Ratings[0].Value,
+        itemValue.Runtime,
+        itemValue.Genre,
+        itemValue.Plot
+      );
+    });
+  } else {
+    mainHtml.innerHTML = ``;
+    mainHtml.innerHTML = `
+                          <div class="postSearchText unableToFind">
+                            <h3>Unable to find what youre looking for. Please try another search.</h3>
+                          </div>
+                          `;
+    movieNotFound = false;
+  }
 });

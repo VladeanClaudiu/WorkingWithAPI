@@ -210,6 +210,12 @@ object{
 .synopsisParagraph{
     grid-column: 1/4;
     text-align: left;
+    color: #6B7280;
+}
+
+.unableToFind{
+    margin-top: 30vh;
+    text-align: center;
 }
 
 
