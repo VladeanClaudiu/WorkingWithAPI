@@ -35,14 +35,22 @@ const getPoster = async (value) => {
     `http://www.omdbapi.com/?s=${value}&apikey=${apiKey}`
   );
   const data = await res.json();
-  const movies = data.map((dataId) => {
-    fetch(`http://www.omdbapi.com/?i=${dataId.imdbID}&apikey=${apiKey}`)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+  let dataArray = await data.Search;
+  //console.log(dataArray);
+  const movieID = await dataArray.map(async (movie) => {
+    const res = await fetch(
+      `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`
+    );
+    const data = await res.json();
+    return data;
   });
+  console.log(movieID);
+  return movieID;
 };
 
-searchBtn.addEventListener("click", () => {
+searchBtn.addEventListener("click", async () => {
   searchTerm = searchMovieInput.value;
-  getPoster(searchTerm);
+  let returnData = getPoster(searchTerm);
+
+  console.log(returnData);
 });
