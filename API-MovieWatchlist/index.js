@@ -35,17 +35,17 @@ const getPoster = async (value) => {
     `http://www.omdbapi.com/?s=${value}&apikey=${apiKey}`
   );
   const data = await res.json();
-  let dataArray = await data.Search;
+  let dataArray = data.Search;
   console.log(dataArray);
-  const movieID = await dataArray.map(async (movie) => {
+  const movieID = dataArray.map(async (movie) => {
     const res = await fetch(
       `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`
     );
-    const data = await res.json();
-    return await data;
+    const data = res.json();
+    return data;
   });
   console.log(movieID);
-  return await movieID;
+  return movieID;
 };
 
 searchBtn.addEventListener("click", async () => {
@@ -55,14 +55,14 @@ searchBtn.addEventListener("click", async () => {
   returnData.map(async (item) => {
     const itemValue = await item;
     console.log(itemValue);
-    mainHtml.innerHTML += await setMovieHtml(
-      await itemValue.imdbID,
-      await itemValue.Poster,
-      await itemValue.Title,
-      await itemValue.Ratings[0].Value,
-      await itemValue.Runtime,
-      await itemValue.Genre,
-      await itemValue.Plot
+    mainHtml.innerHTML += setMovieHtml(
+      itemValue.imdbID,
+      itemValue.Poster,
+      itemValue.Title,
+      itemValue.Ratings[0].Value,
+      itemValue.Runtime,
+      itemValue.Genre,
+      itemValue.Plot
     );
   });
 });
