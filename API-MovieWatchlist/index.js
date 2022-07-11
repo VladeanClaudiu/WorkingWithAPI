@@ -1,5 +1,6 @@
 const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
+const watchListArr = [];
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
@@ -21,7 +22,7 @@ function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
       <div class="movieInfo">
           <h5 class="runtime">${runtime}</h5>
           <h5 class="genre">${genre}</h5>
-          <button class="watchLater">Watchlist</button>
+          <button class="watchLater" id="watchLater" onclick="addToWatchlist(${id})">Watchlist</button>
           <p class="synopsisParagraph">
               ${synopsis}
           </p>
@@ -77,6 +78,15 @@ searchBtn.addEventListener("click", async () => {
                             <h3>Unable to find what youre looking for. Please try another search.</h3>
                           </div>
                           `;
-    movieNotFound = false;
   }
 });
+
+function addToWatchlist(id) {
+  console.log(id);
+  let test = id.outerHTML;
+
+  watchListArr.push(test);
+  console.log(watchListArr);
+  localStorage.setItem("Movie", JSON.stringify(watchListArr));
+}
+console.log(localStorage.getItem("Movie"));
