@@ -1,11 +1,13 @@
 const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
 const watchListArr = [];
+const movieLocalStorage = JSON.parse(localStorage.getItem("Movie"));
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-movie");
 const mainHtml = document.getElementById("main-content");
+const mainHtmlList = document.getElementById("main-content-list");
 
 function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
   return `
@@ -90,3 +92,13 @@ function addToWatchlist(id) {
   localStorage.setItem("Movie", JSON.stringify(watchListArr));
 }
 console.log(localStorage.getItem("Movie"));
+
+function renderList() {
+  mainHtmlList.innerHTML = "";
+  console.log(movieLocalStorage);
+  movieLocalStorage.map((item) => {
+    mainHtmlList.innerHTML += item;
+  });
+}
+
+renderList();
