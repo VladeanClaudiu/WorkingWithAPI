@@ -92,7 +92,13 @@ function addToWatchlist(id) {
   console.log(id);
   let htmlEl = id.outerHTML;
   console.log(watchListArr);
-  watchListArr.push(htmlEl);
+  if (!watchListArr.includes(htmlEl)) {
+    watchListArr.push(htmlEl);
+    console.log("added");
+  } else {
+    console.log("already added");
+  }
+
   console.log(watchListArr);
   localStorage.setItem("Movie", JSON.stringify(watchListArr));
 }
