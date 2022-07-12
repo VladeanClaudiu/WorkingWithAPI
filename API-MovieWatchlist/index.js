@@ -1,13 +1,18 @@
 const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
-const watchListArr = [];
+let watchListArr = [];
 const movieLocalStorage = JSON.parse(localStorage.getItem("Movie"));
+setArrayLocalSotage();
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-movie");
 const mainHtml = document.getElementById("main-content");
-const mainHtmlList = document.getElementById("main-content-list");
+
+// sets the array equal to local storage
+function setArrayLocalSotage() {
+  watchListArr = JSON.parse(localStorage.getItem("Movie"));
+}
 
 function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
   return `
@@ -83,6 +88,7 @@ searchBtn.addEventListener("click", async () => {
   }
 });
 
+//adding to local storage
 function addToWatchlist(id) {
   console.log(id);
   let test = id.outerHTML;
@@ -92,13 +98,3 @@ function addToWatchlist(id) {
   localStorage.setItem("Movie", JSON.stringify(watchListArr));
 }
 console.log(localStorage.getItem("Movie"));
-
-function renderList() {
-  mainHtmlList.innerHTML = "";
-  console.log(movieLocalStorage);
-  movieLocalStorage.map((item) => {
-    mainHtmlList.innerHTML += item;
-  });
-}
-
-renderList();
