@@ -9,7 +9,7 @@ const searchMovieInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-movie");
 const mainHtml = document.getElementById("main-content");
 
-// sets the array equal to local storage
+// sets the array equal to local sotra
 function setArrayLocalSotage() {
   watchListArr = JSON.parse(localStorage.getItem("Movie"));
 }
@@ -88,13 +88,11 @@ searchBtn.addEventListener("click", async () => {
   }
 });
 
-//adding to local storage
 function addToWatchlist(id) {
   console.log(id);
-  let test = id.outerHTML;
-
-  watchListArr.push(test);
+  let htmlEl = id.outerHTML;
+  console.log(watchListArr);
+  watchListArr.push(htmlEl);
   console.log(watchListArr);
   localStorage.setItem("Movie", JSON.stringify(watchListArr));
 }
-console.log(localStorage.getItem("Movie"));

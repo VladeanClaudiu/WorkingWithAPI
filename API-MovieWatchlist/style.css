@@ -218,4 +218,10 @@ object{
     text-align: center;
 }
 
+.removeStyle{
+    background-image: url(./images/minus-icon.svg)!important;
+    background-repeat: no-repeat;
+    background-position: 0%;
+}
+
 
