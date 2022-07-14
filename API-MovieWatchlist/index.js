@@ -12,6 +12,7 @@ const mainHtml = document.getElementById("main-content");
 // sets the array equal to local sotra
 function setArrayLocalStorage() {
   watchListArr = JSON.parse(localStorage.getItem("Movie"));
+
 }
 
 function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
@@ -90,7 +91,6 @@ searchBtn.addEventListener("click", async () => {
 
 //
 function addToWatchlist(id) {
-  
   console.log(id);
   let htmlEl = id.outerHTML;
   console.log(watchListArr);
@@ -106,3 +106,7 @@ function addToWatchlist(id) {
 }
 
 setArrayLocalStorage();
+
+
+
+console.log(watchListArr)
