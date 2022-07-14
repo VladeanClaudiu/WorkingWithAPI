@@ -2,7 +2,7 @@ const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
 let watchListArr = [];
 const movieLocalStorage = JSON.parse(localStorage.getItem("Movie"));
-setArrayLocalSotage();
+
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
@@ -10,7 +10,7 @@ const searchBtn = document.getElementById("search-movie");
 const mainHtml = document.getElementById("main-content");
 
 // sets the array equal to local sotra
-function setArrayLocalSotage() {
+function setArrayLocalStorage() {
   watchListArr = JSON.parse(localStorage.getItem("Movie"));
 }
 
@@ -89,6 +89,7 @@ searchBtn.addEventListener("click", async () => {
 });
 
 function addToWatchlist(id) {
+  
   console.log(id);
   let htmlEl = id.outerHTML;
   console.log(watchListArr);
@@ -102,3 +103,5 @@ function addToWatchlist(id) {
   console.log(watchListArr);
   localStorage.setItem("Movie", JSON.stringify(watchListArr));
 }
+
+setArrayLocalStorage();
