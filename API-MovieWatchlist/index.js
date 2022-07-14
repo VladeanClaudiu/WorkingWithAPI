@@ -88,6 +88,7 @@ searchBtn.addEventListener("click", async () => {
   }
 });
 
+//
 function addToWatchlist(id) {
   
   console.log(id);
