@@ -121,3 +121,6 @@ function addToWatchlist(movieID) {
 
   console.log(watchListArr);
 }
+
+//checks if the movie is already added to watchList
+function checkMovieID(movieID) {}
