@@ -108,20 +108,16 @@ searchBtn.addEventListener("click", async () => {
 });
 
 //add to watchlist function
-function addToWatchlist(id) {
-  let htmlEl = id.outerHTML;
-  console.log(watchListArr);
-  if (!watchListArr.includes(htmlEl)) {
-    watchListArr.push(htmlEl);
-    console.log("added");
-  } else {
-    console.log("already added");
+function addToWatchlist(movieID) {
+  //gets the id of the movie clicked
+  let movieIDTest = movieID.getAttribute("id");
+  //goes through the list of movies searched for, matches id's and adds the object to the watch list array
+  for (item of movieSearchArray) {
+    if (item.id === movieIDTest) {
+      watchListArr.push(item);
+    } else {
+      console.log("");
+    }
   }
-
   console.log(watchListArr);
-  localStorage.setItem("Movie", JSON.stringify(watchListArr));
 }
-
-setArrayLocalStorage();
-
-console.log(watchListArr);
