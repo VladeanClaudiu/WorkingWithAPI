@@ -2,17 +2,15 @@ const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
 let movieSearchArray = [];
 let watchListArr = [];
-const movieLocalStorage = JSON.parse(localStorage.getItem("Movie"));
+if (localStorage.getItem("WatchList") !== null) {
+  watchListArr = JSON.parse(localStorage.getItem("WatchList"));
+  console.log(watchListArr);
+}
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
 const searchBtn = document.getElementById("search-movie");
 const mainHtml = document.getElementById("main-content");
-
-// sets the array equal to local sotra
-// function setArrayLocalStorage() {
-//   watchListArr = JSON.parse(localStorage.getItem("Movie"));
-// }
 
 function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
   return `
@@ -113,11 +111,13 @@ function addToWatchlist(movieID) {
   let movieIDTest = movieID.getAttribute("id");
   //goes through the list of movies searched for, matches id's and adds the object to the watch list array
   for (item of movieSearchArray) {
-    if (item.id === movieIDTest) {
+    if (item.id === movieIDTest && !watchListArr.includes(item)) {
       watchListArr.push(item);
     } else {
-      console.log("");
+      console.log("Failed to add to list, already added");
     }
   }
+  localStorage.setItem("WatchList", JSON.stringify(watchListArr));
+
   console.log(watchListArr);
 }
