@@ -1,8 +1,8 @@
 const apiKey = "c8ea3645";
 let searchTerm = "Movie Name";
+let movieSearchArray = [];
 let watchListArr = [];
 const movieLocalStorage = JSON.parse(localStorage.getItem("Movie"));
-
 
 //html id declarations
 const searchMovieInput = document.getElementById("search");
@@ -10,10 +10,9 @@ const searchBtn = document.getElementById("search-movie");
 const mainHtml = document.getElementById("main-content");
 
 // sets the array equal to local sotra
-function setArrayLocalStorage() {
-  watchListArr = JSON.parse(localStorage.getItem("Movie"));
-
-}
+// function setArrayLocalStorage() {
+//   watchListArr = JSON.parse(localStorage.getItem("Movie"));
+// }
 
 function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
   return `
@@ -39,6 +38,7 @@ function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
 `;
 }
 
+//fetches data with the named value
 const getPoster = async (value) => {
   const res = await fetch(
     `http://www.omdbapi.com/?s=${value}&apikey=${apiKey}`
@@ -47,6 +47,7 @@ const getPoster = async (value) => {
   let dataArray = data.Search;
   if (dataArray != undefined) {
     console.log(dataArray);
+    //map through all search results and fetches the movies data using the imdbID from the previous fetch request
     const movieID = dataArray.map(async (movie) => {
       const res = await fetch(
         `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`
@@ -60,25 +61,40 @@ const getPoster = async (value) => {
 };
 
 searchBtn.addEventListener("click", async () => {
+  //clearing movie search array
+  movieSearchArray = [];
   searchTerm = searchMovieInput.value;
   mainHtml.innerHTML = "";
-  let returnData = await getPoster(searchTerm);
-  console.log(returnData);
-  if (returnData != undefined) {
-    returnData.map(async (item) => {
+  let returnMovieData = await getPoster(searchTerm);
+  console.log(returnMovieData);
+  //if the returned data from the database is not undefined
+  if (returnMovieData != undefined) {
+    returnMovieData.map(async (item) => {
       const itemValue = await item;
-      console.log(itemValue);
+      //creating a movie object for each movie
+      const movie = {
+        id: itemValue.imdbID,
+        poster: itemValue.Poster,
+        title: itemValue.Title,
+        rating: itemValue.Ratings[0].Value,
+        runtime: itemValue.Runtime,
+        genre: itemValue.Genre,
+        plot: itemValue.Plot,
+      };
+      //adding new object to a search array
+      movieSearchArray.push(movie);
 
       mainHtml.innerHTML += setMovieHtml(
-        itemValue.imdbID,
-        itemValue.Poster,
-        itemValue.Title,
-        itemValue.Ratings[0].Value,
-        itemValue.Runtime,
-        itemValue.Genre,
-        itemValue.Plot
+        movie.id,
+        movie.poster,
+        movie.title,
+        movie.rating,
+        movie.runtime,
+        movie.genre,
+        movie.plot
       );
     });
+    //if the returned data is undefined
   } else {
     mainHtml.innerHTML = ``;
     mainHtml.innerHTML = `
@@ -87,11 +103,12 @@ searchBtn.addEventListener("click", async () => {
                           </div>
                           `;
   }
+
+  console.log(movieSearchArray);
 });
 
-//
+//add to watchlist function
 function addToWatchlist(id) {
-  console.log(id);
   let htmlEl = id.outerHTML;
   console.log(watchListArr);
   if (!watchListArr.includes(htmlEl)) {
@@ -107,6 +124,4 @@ function addToWatchlist(id) {
 
 setArrayLocalStorage();
 
-
-
-console.log(watchListArr)
+console.log(watchListArr);
