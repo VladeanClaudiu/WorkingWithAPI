@@ -1,31 +1,50 @@
 const apiKey = "c8ea3645";
-let searchTerm = "Movie Name";
-let watchListArr = [];
-const movieLocalStorage = JSON.parse(localStorage.getItem("Movie"));
-setArrayLocalSotage();
-//html id declarations
 const mainHtmlList = document.getElementById("main-content-list");
-
-function setArrayLocalSotage() {
-  watchListArr = JSON.parse(localStorage.getItem("Movie"));
+let searchTerm = "Movie Name";
+let movieSearchArray = [];
+let watchListArr = [];
+if (localStorage.getItem("WatchList") !== null) {
+  watchListArr = JSON.parse(localStorage.getItem("WatchList"));
+  console.log(watchListArr);
 }
 
-console.log(localStorage.getItem("Movie"));
-
-function replaceButton() {
-  const watchLaterButtonS = document.querySelectorAll(".watchLater");
-  for (button of watchLaterButtonS) {
-    button.textContent = "Remove";
-    button.classList.add("removeStyle");
-  }
+function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
+  return `
+    <div class="movieEl" id="${id}">
+        <img
+        class="moviePoster"
+        src="${poster}"
+        alt="image of a poster"
+        />
+        <div class="movieTitle">
+            <h4>${title}</h4>
+            <p>⭐${rating}</p>
+        </div>
+        <div class="movieInfo">
+            <h5 class="runtime">${runtime}</h5>
+            <h5 class="genre">${genre}</h5>
+            <button class="watchLaterAdded removeStyle" id="removeBtn" onclick="removeFromWatchList(${id})">Remove</button>
+            <p class="synopsisParagraph">
+                ${synopsis}
+            </p>
+        </div>
+    </div>
+  `;
 }
 
 function renderList() {
   mainHtmlList.innerHTML = "";
-  console.log(movieLocalStorage);
   if (watchListArr.length > 0) {
-    movieLocalStorage.map((item) => {
-      mainHtmlList.innerHTML += item;
+    watchListArr.map((movie) => {
+      mainHtmlList.innerHTML += setMovieHtml(
+        movie.id,
+        movie.poster,
+        movie.title,
+        movie.rating,
+        movie.runtime,
+        movie.genre,
+        movie.plot
+      );
     });
   } else {
     mainHtmlList.innerHTML = `
@@ -34,10 +53,6 @@ function renderList() {
     </div>
     `;
   }
-
-  let testID = replaceButton();
-  console.log(testID);
-  //localStorage.clear();
 }
 
 renderList();

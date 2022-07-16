@@ -203,6 +203,22 @@ object{
     height: 20px;
 }
 
+.movieInfo .watchLaterAdded{
+    border: none;
+    background: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    color: #111827;
+    background-position: 0%;
+    padding-left: 20px;
+    cursor: pointer;
+    text-align: left;
+    height: 20px;
+}
+
 .runtime, .genre{
     top: 50%;
 }
@@ -220,7 +236,7 @@ object{
 
 .removeStyle{
     background-image: url(./images/minus-icon.svg)!important;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat!important;
     background-position: 0%;
 }
 
