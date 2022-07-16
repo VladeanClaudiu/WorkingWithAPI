@@ -155,10 +155,15 @@ function addToWatchlist(movieID) {
 
 //add to watchlist function
 function removeFromWatchList(movieID) {
-  //gets the id of the movie clicked
-  console.log("Remove Test" + movieID);
-  // let movieIDTest = movieID.getAttribute("id");
-  // console.log(movieIDTest);
+  let movieIDTest = movieID.getAttribute("id");
+  let watchedFilms = watchListArr.filter((movie) => {
+    if (movie.id != movieIDTest) {
+      return movie;
+    }
+  });
+  watchListArr = watchedFilms;
+  localStorage.setItem("WatchList", JSON.stringify(watchListArr));
+  renderMovieSearch();
 }
 
 //checks if the movie is already added to watchList
