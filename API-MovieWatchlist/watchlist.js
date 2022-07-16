@@ -8,6 +8,34 @@ if (localStorage.getItem("WatchList") !== null) {
   console.log(watchListArr);
 }
 
+//add to watchlist function
+function removeFromWatchList(movieID) {
+  let movieIDTest = movieID.getAttribute("id");
+  let watchedFilms = watchListArr.filter((movie) => {
+    if (movie.id != movieIDTest) {
+      return movie;
+    }
+  });
+  watchListArr = watchedFilms;
+  localStorage.setItem("WatchList", JSON.stringify(watchListArr));
+  renderMovieSearch();
+}
+
+const renderMovieSearch = () => {
+  mainHtmlList.innerHTML = "";
+  watchListArr.map((movie) => {
+    mainHtmlList.innerHTML += setMovieHtml(
+      movie.id,
+      movie.poster,
+      movie.title,
+      movie.rating,
+      movie.runtime,
+      movie.genre,
+      movie.plot
+    );
+  });
+};
+
 function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
   return `
     <div class="movieEl" id="${id}">
@@ -33,19 +61,8 @@ function setMovieHtml(id, poster, title, rating, runtime, genre, synopsis) {
 }
 
 function renderList() {
-  mainHtmlList.innerHTML = "";
   if (watchListArr.length > 0) {
-    watchListArr.map((movie) => {
-      mainHtmlList.innerHTML += setMovieHtml(
-        movie.id,
-        movie.poster,
-        movie.title,
-        movie.rating,
-        movie.runtime,
-        movie.genre,
-        movie.plot
-      );
-    });
+    renderMovieSearch();
   } else {
     mainHtmlList.innerHTML = `
     <div class="postSearchText unableToFind">
