@@ -1,4 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;900&display=swap');
+
 body{
     margin: 0;
     padding: 0;
+    background: no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 2px 2px 2px #474747;
+}
+
+.dashboard-container{
+    margin: 10% auto 10% auto;
+    border: 3px solid rgb(253, 169, 109);
+    height: 70vh;
+    width: 40vh;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 3fr 2fr 1fr;
+}
+
+.authorName{
+    color: white;
+    font-weight: lighter;
+    font-size: 1em;
+    margin-left: 5%;
+    margin-top: 10%;
 }
