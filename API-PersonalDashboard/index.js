@@ -1,9 +1,9 @@
 const imageApiLink =
   "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature";
-const cryptoApiLink = "https://www.coingecko.com/api/documentations/v3#/";
-const cryptoApiEndpoint = "";
+const cryptoApiLink = "https://api.coingecko.com/api/v3/coins/";
 const photoAuthor = document.getElementById("author-info");
 const cryptoInfo = document.getElementById("crypto-info");
+const cryptoIDs = ["bitcoin", "ethereum", "dogecoin", "hashasdhashd"];
 
 const resizeDash = () => {
   height = document.getElementById("dashboard").offsetHeight;
@@ -31,8 +31,20 @@ const setBackgroundImage = () => {
     });
 };
 
-const setCryptoInfo = () => {
-  fetch(cryptoApiLink);
+const setCryptoInfo = (cryptoID) => {
+  for (id of cryptoID) {
+    const cryptoApiEndpoint = `${id}`;
+    fetch(cryptoApiLink + cryptoApiEndpoint)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        throw Error("Test error");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 };
 
 setBackgroundImage();
+setCryptoInfo(cryptoIDs);
