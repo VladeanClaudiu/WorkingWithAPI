@@ -31,11 +31,16 @@ const setBackgroundImage = () => {
     });
 };
 
-const getCryptoHtml = (image, name) => {
+const getCryptoHtml = (image, name, current, high, low) => {
   cryptoInfo.innerHTML += `
                           <div class="cryptoBlock" id="crypto-block">
                             <img src="${image}" alt="crypto-icon" />
                             <p class="cryptoName">${name}</p>
+                            <div class="prices">
+                              <p class="currentPrice">🎯: €${current}</p>
+                              <p class="high24H">📈: €${high}</p>
+                              <p class="low24H">📉: €${low}</p>
+                            </div>
                           </div>
                         `;
 };
@@ -54,8 +59,18 @@ const setCryptoInfo = (cryptoID) => {
       .then((data) => {
         let cryptoImageSrc = data.image.thumb;
         let cryptoName = data.name;
-
-        getCryptoHtml(cryptoImageSrc, cryptoName);
+        //console.log(data.market_data.current_price.eur);
+        let currentCryptoPrice = data.market_data.current_price.eur;
+        let highCryptoPrice = data.market_data.high_24h.eur;
+        let lowCryptoPrice = data.market_data.low_24h.eur;
+        console.log(data.market_data);
+        getCryptoHtml(
+          cryptoImageSrc,
+          cryptoName,
+          currentCryptoPrice,
+          highCryptoPrice,
+          lowCryptoPrice
+        );
       })
       .catch((err) => {
         console.error(err);

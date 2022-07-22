@@ -40,8 +40,9 @@ body{
 
 .cryptoBlock{
     display: grid;
-    grid-template-columns: 1fr 8fr;
+    grid-template-columns: 1fr 4fr 6fr;
     margin: 0 1em 0 1em;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.151);
 }
 
 .cryptoBlock p {
