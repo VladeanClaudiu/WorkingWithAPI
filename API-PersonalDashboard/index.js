@@ -3,7 +3,7 @@ const imageApiLink =
 const cryptoApiLink = "https://api.coingecko.com/api/v3/coins/";
 const photoAuthor = document.getElementById("author-info");
 const cryptoInfo = document.getElementById("crypto-info");
-const cryptoIDs = ["bitcoin", "ethereum", "dogecoin", "hashasdhashd"];
+const cryptoIDs = ["bitcoin", "ethereum", "dogecoin"];
 
 const resizeDash = () => {
   height = document.getElementById("dashboard").offsetHeight;
@@ -31,14 +31,31 @@ const setBackgroundImage = () => {
     });
 };
 
+const getCryptoHtml = (image, name) => {
+  cryptoInfo.innerHTML += `
+                          <div class="cryptoBlock" id="crypto-block">
+                            <img src="${image}" alt="crypto-icon" />
+                            <p class="cryptoName">${name}</p>
+                          </div>
+                        `;
+};
+
 const setCryptoInfo = (cryptoID) => {
+  cryptoInfo.innerHTML = "";
   for (id of cryptoID) {
     const cryptoApiEndpoint = `${id}`;
     fetch(cryptoApiLink + cryptoApiEndpoint)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("Coin not found!");
+        }
+        return res.json();
+      })
       .then((data) => {
-        console.log(data);
-        throw Error("Test error");
+        let cryptoImageSrc = data.image.thumb;
+        let cryptoName = data.name;
+
+        getCryptoHtml(cryptoImageSrc, cryptoName);
       })
       .catch((err) => {
         console.error(err);

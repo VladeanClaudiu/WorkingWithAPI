@@ -30,3 +30,25 @@ body{
     margin-left: 5%;
     margin-top: 10%;
 }
+
+.cryptoSection{
+    display: grid;
+    grid-template-columns: 4fr;
+    color: white;
+    text-shadow: none;
+}
+
+.cryptoBlock{
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    margin: 0 1em 0 1em;
+}
+
+.cryptoBlock p {
+    margin: auto 0 auto 0;
+    text-align: left;
+}
+
+.cryptoBlock img {
+    margin: auto 0 auto 0;
+}
