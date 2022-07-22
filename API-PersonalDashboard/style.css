@@ -35,7 +35,6 @@ body{
     display: grid;
     grid-template-columns: 4fr;
     color: white;
-    text-shadow: none;
 }
 
 .cryptoBlock{
@@ -52,4 +51,11 @@ body{
 
 .cryptoBlock img {
     margin: auto 0 auto 0;
+}
+
+.timeSection{
+    color: rgba(255, 255, 255, 0.913);
+    text-align: center;
+    font-size: 4em;
+    font-weight: normal;
 }

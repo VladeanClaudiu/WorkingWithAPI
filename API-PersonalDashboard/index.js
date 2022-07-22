@@ -3,12 +3,35 @@ const imageApiLink =
 const cryptoApiLink = "https://api.coingecko.com/api/v3/coins/";
 const photoAuthor = document.getElementById("author-info");
 const cryptoInfo = document.getElementById("crypto-info");
+const timeInfo = document.getElementById("time-section");
 const cryptoIDs = ["bitcoin", "ethereum", "dogecoin"];
 
 const resizeDash = () => {
   height = document.getElementById("dashboard").offsetHeight;
   width = document.getElementById("dashboard").offsetWidth;
   self.resizeTo(width + 20, height + 100);
+};
+
+const setTimeInfo = () => {
+  const date = new Date();
+  let hou = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
+  const timeObj = {
+    hours: hou,
+    minutes: min,
+    seconds: sec,
+  };
+  //console.log(hours + ":" + minutes + ":" + seconds);
+  return timeObj;
+};
+
+const setTimeInfoHtml = () => {
+  const time = setTimeInfo();
+  let hour = time.hours;
+  let minute = time.minutes;
+  let second = time.seconds;
+  timeInfo.innerHTML = `<p>${hour}:${minute}:${second}</p>`;
 };
 
 const setBackgroundImage = () => {
@@ -31,7 +54,7 @@ const setBackgroundImage = () => {
     });
 };
 
-const getCryptoHtml = (image, name, current, high, low) => {
+const getCryptoInfoHtml = (image, name, current, high, low) => {
   cryptoInfo.innerHTML += `
                           <div class="cryptoBlock" id="crypto-block">
                             <img src="${image}" alt="crypto-icon" />
@@ -64,7 +87,7 @@ const setCryptoInfo = (cryptoID) => {
         let highCryptoPrice = data.market_data.high_24h.eur;
         let lowCryptoPrice = data.market_data.low_24h.eur;
         console.log(data.market_data);
-        getCryptoHtml(
+        getCryptoInfoHtml(
           cryptoImageSrc,
           cryptoName,
           currentCryptoPrice,
@@ -80,3 +103,7 @@ const setCryptoInfo = (cryptoID) => {
 
 setBackgroundImage();
 setCryptoInfo(cryptoIDs);
+setInterval(function () {
+  setCryptoInfo(cryptoIDs);
+}, 360000);
+setInterval(setTimeInfoHtml, 1000);
