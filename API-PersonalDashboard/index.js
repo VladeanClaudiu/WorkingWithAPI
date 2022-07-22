@@ -14,24 +14,12 @@ const resizeDash = () => {
 
 const setTimeInfo = () => {
   const date = new Date();
-  let hou = date.getHours();
-  let min = date.getMinutes();
-  let sec = date.getSeconds();
-  const timeObj = {
-    hours: hou,
-    minutes: min,
-    seconds: sec,
-  };
-  //console.log(hours + ":" + minutes + ":" + seconds);
-  return timeObj;
+  return date.toLocaleTimeString("en-us", { timeStyle: "short" });
 };
 
 const setTimeInfoHtml = () => {
   const time = setTimeInfo();
-  let hour = time.hours;
-  let minute = time.minutes;
-  let second = time.seconds;
-  timeInfo.innerHTML = `<p>${hour}:${minute}:${second}</p>`;
+  timeInfo.innerHTML = `<p>${time}</p>`;
 };
 
 const setBackgroundImage = () => {
@@ -106,4 +94,5 @@ setCryptoInfo(cryptoIDs);
 setInterval(function () {
   setCryptoInfo(cryptoIDs);
 }, 360000);
-setInterval(setTimeInfoHtml, 1000);
+setTimeInfoHtml();
+setInterval(setTimeInfoHtml, 60000);
