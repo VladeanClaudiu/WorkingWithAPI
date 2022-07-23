@@ -4,7 +4,21 @@ const cryptoApiLink = "https://api.coingecko.com/api/v3/coins/";
 const photoAuthor = document.getElementById("author-info");
 const cryptoInfo = document.getElementById("crypto-info");
 const timeInfo = document.getElementById("time-section");
+const weatherInfo = document.getElementById("weather-section");
 const cryptoIDs = ["bitcoin", "ethereum", "dogecoin"];
+
+const setWeatherHtml = (imgSrc, temp, location) => {
+  return `<div class="weatherIcon">
+            <img src="${imgSrc}" alt="weather icon" />
+          </div>
+          <div class="weatherTemp">
+            <p>${temp}°C</p>
+          </div>
+          <div class="weatherLocation">
+            <p>${location}</p>
+          </div>
+          `;
+};
 
 navigator.geolocation.getCurrentPosition((position) => {
   fetch(
@@ -17,7 +31,14 @@ navigator.geolocation.getCurrentPosition((position) => {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
+      let locationName = data.name;
+      let locationTemp = data.main.temp;
+      let locationWeatherIcon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      weatherInfo.innerHTML = setWeatherHtml(
+        locationWeatherIcon,
+        locationTemp,
+        locationName
+      );
     })
     .catch((err) => {
       console.error(err);
