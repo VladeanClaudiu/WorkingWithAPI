@@ -6,21 +6,23 @@ const cryptoInfo = document.getElementById("crypto-info");
 const timeInfo = document.getElementById("time-section");
 const cryptoIDs = ["bitcoin", "ethereum", "dogecoin"];
 
-const getLocation = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(coPosition);
-  } else {
-    console.log("Geolocation not supported by the browser");
-  }
-};
-
-const coPosition = async (pos) => {
-  let lat = await pos.coords.latitude;
-  let lon = await pos.coords.longitude;
-
-  console.log(lat, lon);
-  return lat, lon;
-};
+navigator.geolocation.getCurrentPosition((position) => {
+  fetch(
+    `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Weather data not working");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 const resizeDash = () => {
   height = document.getElementById("dashboard").offsetHeight;
@@ -112,5 +114,3 @@ setInterval(function () {
 }, 360000);
 setTimeInfoHtml();
 setInterval(setTimeInfoHtml, 60000);
-
-getLocation();
