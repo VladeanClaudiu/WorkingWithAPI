@@ -109,7 +109,6 @@ const setCryptoInfo = (cryptoID) => {
       .then((data) => {
         let cryptoImageSrc = data.image.thumb;
         let cryptoName = data.name;
-        //console.log(data.market_data.current_price.eur);
         let currentCryptoPrice = data.market_data.current_price.eur;
         let highCryptoPrice = data.market_data.high_24h.eur;
         let lowCryptoPrice = data.market_data.low_24h.eur;
