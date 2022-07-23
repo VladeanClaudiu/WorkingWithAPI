@@ -7,8 +7,5 @@
         "default_popup": "index.html",
         "default_icon": "icon.png"
     },
-    "chrome_url_overrides": {
-        "newtab": "index.html"
-    },
     "permissions": ["storage", "activeTab", "scripting", "tabs", "geolocation"]
 }
