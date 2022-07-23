@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "Personal Dashboard",
+    "version": "1.0.5",
+    "description": "Practicing async JS",
+    "action": {
+        "default_popup": "index.html",
+        "default_icon": "icon.png"
+    },
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "permissions": ["storage", "activeTab", "scripting", "tabs", "geolocation"]
+}

@@ -10,14 +10,15 @@ body{
     background-size: cover;
     font-family: 'Inter', sans-serif;
     text-shadow: 2px 2px 2px #474747;
+    height: 200px;
 }
 
 .dashboard-container{
     background-color: rgba(0, 0, 0, 0.121);
-    margin: 5% auto 10% auto;
-    border: 3px solid rgb(253, 169, 109);
-    width: 400px;
+    margin: 0 auto 10% auto;
     border-radius: 10px;
+    width: 400px;
+    height: 550px;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: .7fr .8fr 1.5fr .5fr;
