@@ -6,6 +6,22 @@ const cryptoInfo = document.getElementById("crypto-info");
 const timeInfo = document.getElementById("time-section");
 const cryptoIDs = ["bitcoin", "ethereum", "dogecoin"];
 
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(coPosition);
+  } else {
+    console.log("Geolocation not supported by the browser");
+  }
+};
+
+const coPosition = async (pos) => {
+  let lat = await pos.coords.latitude;
+  let lon = await pos.coords.longitude;
+
+  console.log(lat, lon);
+  return lat, lon;
+};
+
 const resizeDash = () => {
   height = document.getElementById("dashboard").offsetHeight;
   width = document.getElementById("dashboard").offsetWidth;
@@ -96,3 +112,5 @@ setInterval(function () {
 }, 360000);
 setTimeInfoHtml();
 setInterval(setTimeInfoHtml, 60000);
+
+getLocation();
