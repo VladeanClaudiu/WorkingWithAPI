@@ -1,6 +1,7 @@
 ## Color Scheme Generator
 
 This is a solution to a solo project from [Scrimba](https://www.scrimba.com).
+This was my a very fun project to work on.
 Solo projects are meant to challenge the skills you've learnt so far through the courses; there is no solution given by Scrimba.
 
 ## The challenge
