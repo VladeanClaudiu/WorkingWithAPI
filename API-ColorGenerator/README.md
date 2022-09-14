@@ -23,5 +23,5 @@ Solo projects are meant to challenge the skills you've learnt so far through the
 - [The Color API](https://www.thecolorapi.com/)
 - Figma design files from Scrimba
 
-## Built with
+## Live Project
 [View project here](https://vladeanclaudiu.github.io/color-generator/)
