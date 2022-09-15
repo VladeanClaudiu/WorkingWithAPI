@@ -18,3 +18,6 @@ Solo projects are meant to challenge the skills you've learnt so far through the
 - JavaScript
 - [OMDB API](https://www.omdbapi.com/)
 - Figma design files from Scrimba
+
+##Live site
+[Movie Watchlist App](https://vladeanclaudiu.github.io/movie-watchlist-app/)
